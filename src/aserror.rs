@@ -1,5 +1,5 @@
-use std::error::Error;
-use std::panic::UnwindSafe;
+use core2::error::Error;
+use core::panic::UnwindSafe;
 
 pub trait AsDynError<'a> {
     fn as_dyn_error(&self) -> &(dyn Error + 'a);

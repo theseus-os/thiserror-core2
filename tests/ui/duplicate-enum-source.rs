@@ -1,10 +1,10 @@
-use thiserror::Error;
+use thiserror_core2::Error;
 
 #[derive(Error, Debug)]
 pub enum ErrorEnum {
     Confusing {
         #[source]
-        a: std::io::Error,
+        a: core2::io::Error,
         #[source]
         b: anyhow::Error,
     },

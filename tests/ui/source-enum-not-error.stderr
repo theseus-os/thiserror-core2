@@ -5,15 +5,15 @@ error[E0599]: the method `as_dyn_error` exists for reference `&NotError`, but it
     | --------------------
     | |
     | doesn't satisfy `NotError: AsDynError`
-    | doesn't satisfy `NotError: std::error::Error`
+    | doesn't satisfy `NotError: core2::error::Error`
 ...
 10  |         source: NotError,
     |         ^^^^^^ method cannot be called on `&NotError` due to unsatisfied trait bounds
     |
     = note: the following trait bounds were not satisfied:
-            `NotError: std::error::Error`
+            `NotError: core2::error::Error`
             which is required by `NotError: AsDynError`
-            `&NotError: std::error::Error`
+            `&NotError: core2::error::Error`
             which is required by `&NotError: AsDynError`
 note: the following trait must be implemented
    --> $RUST/std/src/error.rs

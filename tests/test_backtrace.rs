@@ -1,6 +1,6 @@
 #![cfg_attr(thiserror_nightly_testing, feature(backtrace))]
 
-use thiserror::Error;
+use thiserror_core2::Error;
 
 #[derive(Error, Debug)]
 #[error("...")]
@@ -10,16 +10,16 @@ pub struct Inner;
 #[derive(Error, Debug)]
 #[error("...")]
 pub struct InnerBacktrace {
-    backtrace: std::backtrace::Backtrace,
+    backtrace: core2::backtrace::Backtrace,
 }
 
 #[cfg(thiserror_nightly_testing)]
 pub mod structs {
     use super::{Inner, InnerBacktrace};
-    use std::backtrace::Backtrace;
-    use std::error::Error;
-    use std::sync::Arc;
-    use thiserror::Error;
+    use core2::backtrace::Backtrace;
+    use core2::error::Error;
+    use core2::sync::Arc;
+    use thiserror_core2::Error;
 
     #[derive(Error, Debug)]
     #[error("...")]
@@ -124,10 +124,10 @@ pub mod structs {
 #[cfg(thiserror_nightly_testing)]
 pub mod enums {
     use super::{Inner, InnerBacktrace};
-    use std::backtrace::Backtrace;
-    use std::error::Error;
-    use std::sync::Arc;
-    use thiserror::Error;
+    use core2::backtrace::Backtrace;
+    use core2::error::Error;
+    use core2::sync::Arc;
+    use thiserror_core2::Error;
 
     #[derive(Error, Debug)]
     pub enum PlainBacktrace {

@@ -1,9 +1,9 @@
-use thiserror::Error;
+use thiserror_core2::Error;
 
 #[derive(Debug, Error)]
 pub struct Error {
     #[source]
-    source: std::io::Error,
+    source: core2::io::Error,
     #[from]
     other: anyhow::Error,
 }

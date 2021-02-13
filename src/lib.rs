@@ -7,17 +7,17 @@
 //! <br>
 //!
 //! This library provides a convenient derive macro for the standard library's
-//! [`std::error::Error`] trait.
+//! [`core2::error::Error`] trait.
 //!
-//! [`std::error::Error`]: https://doc.rust-lang.org/std/error/trait.Error.html
+//! [`core2::error::Error`]: https://doc.rust-lang.org/std/error/trait.Error.html
 //!
 //! <br>
 //!
 //! # Example
 //!
 //! ```rust
-//! # use std::io;
-//! use thiserror::Error;
+//! # use core2::io;
+//! use thiserror_core2::Error;
 //!
 //! #[derive(Error, Debug)]
 //! pub enum DataStoreError {
@@ -40,7 +40,7 @@
 //! # Details
 //!
 //! - Thiserror deliberately does not appear in your public API. You get the
-//!   same thing as if you had written an implementation of `std::error::Error`
+//!   same thing as if you had written an implementation of `core2::error::Error`
 //!   by hand, and switching from handwritten impls to thiserror or vice versa
 //!   is not a breaking change.
 //!
@@ -62,8 +62,8 @@
 //!   which may be arbitrary expressions. For example:
 //!
 //!   ```rust
-//!   # use std::i32;
-//!   # use thiserror::Error;
+//!   # use core::i32;
+//!   # use thiserror_core2::Error;
 //!   #
 //!   #[derive(Error, Debug)]
 //!   pub enum Error {
@@ -77,7 +77,7 @@
 //!   as `.0`.
 //!
 //!   ```rust
-//!   # use thiserror::Error;
+//!   # use thiserror_core2::Error;
 //!   #
 //!   # fn first_char(s: &String) -> char {
 //!   #     s.chars().next().unwrap()
@@ -125,18 +125,19 @@
 //!   The `#[from]` attribute always implies that the same field is `#[source]`,
 //!   so you don't ever need to specify both attributes.
 //!
-//!   Any error type that implements `std::error::Error` or dereferences to `dyn
-//!   std::error::Error` will work as a source.
+//!   Any error type that implements `core2::error::Error` or dereferences to `dyn
+//!   core2::error::Error` will work as a source.
 //!
 //!   ```rust
-//!   # use std::fmt::{self, Display};
-//!   # use thiserror::Error;
+//!   # use core::fmt::{self, Display};
+//!   # use thiserror_core2::Error;
+//!   # use core2::io::Error;
 //!   #
 //!   #[derive(Error, Debug)]
 //!   pub struct MyError {
 //!       msg: String,
 //!       #[source]  // optional if field name is `source`
-//!       source: anyhow::Error,
+//!       source: Error,
 //!   }
 //!   #
 //!   # impl Display for MyError {
@@ -151,7 +152,7 @@
 //!
 //!   ```rust
 //!   # const IGNORE: &str = stringify! {
-//!   use std::backtrace::Backtrace;
+//!   use core2::backtrace::Backtrace;
 //!
 //!   #[derive(Error, Debug)]
 //!   pub struct MyError {
@@ -183,7 +184,8 @@
 //!   "anything else" variant.
 //!
 //!   ```
-//!   # use thiserror::Error;
+//!   # use thiserror_core2::Error;
+//!   # use core2::io::Error;
 //!   #
 //!   #[derive(Error, Debug)]
 //!   pub enum MyError {
@@ -192,14 +194,9 @@
 //!       # */
 //!
 //!       #[error(transparent)]
-//!       Other(#[from] anyhow::Error),  // source and Display delegate to anyhow::Error
+//!       Other(#[from] Error),  // source and Display delegate to Error
 //!   }
 //!   ```
-//!
-//! - See also the [`anyhow`] library for a convenient single error type to use
-//!   in application code.
-//!
-//!   [`anyhow`]: https://github.com/dtolnay/anyhow
 
 #![allow(
     // Clippy bug: https://github.com/rust-lang/rust-clippy/issues/7421
@@ -217,5 +214,8 @@ pub use thiserror_impl::*;
 #[doc(hidden)]
 pub mod private {
     pub use crate::aserror::AsDynError;
-    pub use crate::display::{DisplayAsDisplay, PathAsDisplay};
+    pub use crate::display::DisplayAsDisplay;
+    
+    #[cfg(feature = "std")]
+    pub use crate::display::PathAsDisplay;
 }

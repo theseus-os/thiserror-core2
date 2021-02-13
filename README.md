@@ -7,9 +7,9 @@ derive(Error)
 [<img alt="build status" src="https://img.shields.io/github/workflow/status/dtolnay/thiserror/CI/master?style=for-the-badge" height="20">](https://github.com/dtolnay/thiserror/actions?query=branch%3Amaster)
 
 This library provides a convenient derive macro for the standard library's
-[`std::error::Error`] trait.
+[`core2::error::Error`] trait.
 
-[`std::error::Error`]: https://doc.rust-lang.org/std/error/trait.Error.html
+[`core2::error::Error`]: https://doc.rust-lang.org/std/error/trait.Error.html
 
 ```toml
 [dependencies]
@@ -23,7 +23,7 @@ thiserror = "1.0"
 ## Example
 
 ```rust
-use thiserror::Error;
+use thiserror_core2::Error;
 
 #[derive(Error, Debug)]
 pub enum DataStoreError {
@@ -46,7 +46,7 @@ pub enum DataStoreError {
 ## Details
 
 - Thiserror deliberately does not appear in your public API. You get the same
-  thing as if you had written an implementation of `std::error::Error` by hand,
+  thing as if you had written an implementation of `core2::error::Error` by hand,
   and switching from handwritten impls to thiserror or vice versa is not a
   breaking change.
 
@@ -112,8 +112,8 @@ pub enum DataStoreError {
   The `#[from]` attribute always implies that the same field is `#[source]`, so
   you don't ever need to specify both attributes.
 
-  Any error type that implements `std::error::Error` or dereferences to `dyn
-  std::error::Error` will work as a source.
+  Any error type that implements `core2::error::Error` or dereferences to `dyn
+  core2::error::Error` will work as a source.
 
   ```rust
   #[derive(Error, Debug)]
@@ -128,7 +128,7 @@ pub enum DataStoreError {
   field has a type named `Backtrace`, if any.
 
   ```rust
-  use std::backtrace::Backtrace;
+  use core2::backtrace::Backtrace;
 
   #[derive(Error, Debug)]
   pub struct MyError {

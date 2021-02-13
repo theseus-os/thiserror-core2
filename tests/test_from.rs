@@ -1,7 +1,7 @@
 #![deny(clippy::all, clippy::pedantic)]
 
-use std::io;
-use thiserror::Error;
+use core2::{io, error::Error as _};
+use thiserror_core2::Error;
 
 #[derive(Error, Debug)]
 #[error("...")]
@@ -46,7 +46,7 @@ pub enum ErrorEnumOptional {
 #[derive(Error, Debug)]
 #[error("...")]
 pub enum Many {
-    Any(#[from] anyhow::Error),
+    // Any(#[from] anyhow::Error),
     Io(#[from] io::Error),
 }
 

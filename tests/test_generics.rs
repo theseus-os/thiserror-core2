@@ -1,8 +1,8 @@
 #![deny(clippy::all, clippy::pedantic)]
 #![allow(clippy::needless_late_init)]
 
-use std::fmt::{self, Debug, Display};
-use thiserror::Error;
+use core::fmt::{self, Debug, Display};
+use thiserror_core2::Error;
 
 pub struct NoFormat;
 

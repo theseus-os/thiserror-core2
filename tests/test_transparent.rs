@@ -1,9 +1,9 @@
 #![deny(clippy::all, clippy::pedantic)]
 
 use anyhow::anyhow;
-use std::error::Error as _;
-use std::io;
-use thiserror::Error;
+use core2::error::Error as _;
+use core2::io;
+use thiserror_core2::Error;
 
 #[test]
 fn test_transparent_struct() {
@@ -30,6 +30,7 @@ fn test_transparent_struct() {
 }
 
 #[test]
+#[cfg(feature = "std")]
 fn test_transparent_enum() {
     #[derive(Error, Debug)]
     enum Error {
@@ -48,6 +49,7 @@ fn test_transparent_enum() {
 }
 
 #[test]
+#[cfg(feature = "std")]
 fn test_anyhow() {
     #[derive(Error, Debug)]
     #[error(transparent)]

@@ -1,8 +1,8 @@
 #![deny(clippy::all, clippy::pedantic)]
 #![allow(clippy::iter_cloned_collect, clippy::option_if_let_else)]
 
-use std::fmt::Display;
-use thiserror::Error;
+use core::fmt::Display;
+use thiserror_core2::Error;
 
 // Some of the elaborate cases from the rcc codebase, which is a C compiler in
 // Rust. https://github.com/jyn514/rcc/blob/0.8.0/src/data/error.rs
