@@ -12,7 +12,7 @@ categories = ["rust-patterns"]
 readme = "README.md"
 
 [dependencies]
-thiserror-impl = { version = "=1.0.30", path = "impl" }
+thiserror_core2-impl = { version = "=1.0.30", path = "impl" }
 core2 = { version = "0.4", default-features = false }
 
 [dev-dependencies]

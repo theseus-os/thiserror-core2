@@ -208,7 +208,7 @@
 mod aserror;
 mod display;
 
-pub use thiserror_impl::*;
+pub use thiserror_core2_impl::*;
 
 // Not public API.
 #[doc(hidden)]
