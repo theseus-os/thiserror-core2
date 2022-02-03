@@ -1,6 +1,6 @@
 [package]
 name = "thiserror_core2"
-version = "1.0.30"
+version = "2.0.0"
 authors = ["David Tolnay <dtolnay@gmail.com>", "Brendan Molloy <brendan@bbqsrc.net>"]
 edition = "2018"
 rust-version = "1.31"
@@ -12,7 +12,7 @@ categories = ["rust-patterns"]
 readme = "README.md"
 
 [dependencies]
-thiserror_core2-impl = { version = "=1.0.30", path = "impl" }
+thiserror_core2-impl = { version = "2.0.0", path = "impl" }
 core2 = { version = "0.4", default-features = false }
 
 [dev-dependencies]
