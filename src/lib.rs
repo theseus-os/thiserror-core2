@@ -205,6 +205,8 @@
     clippy::return_self_not_must_use,
 )]
 
+#![cfg_attr(not(feature = "std"), no_std)]
+
 mod aserror;
 mod display;
 
